@@ -1,4 +1,4 @@
 [build]
   base    = ""
-  publish = "client/out"
-  command = "cd client/ && npm run build && npm run export"
+  publish = "out"
+  command = "npm run build && npm run export"
