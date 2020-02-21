@@ -1,8 +1,8 @@
 {
   "service": {
-    "service": "websocket-authorizer-example",
+    "service": "from-way-downtown-api",
     "serviceObject": {
-      "name": "websocket-authorizer-example"
+      "name": "from-way-downtown-api"
     },
     "provider": {
       "stage": "dev",
@@ -73,19 +73,13 @@
           "ConnectLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/websocket-authorizer-example-dev-connect"
+              "LogGroupName": "/aws/lambda/from-way-downtown-api-dev-connect"
             }
           },
           "DefaultLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/websocket-authorizer-example-dev-default"
-            }
-          },
-          "AuthLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/websocket-authorizer-example-dev-auth"
+              "LogGroupName": "/aws/lambda/from-way-downtown-api-dev-default"
             }
           },
           "IamRoleLambdaExecution": {
@@ -114,7 +108,7 @@
                       "-",
                       [
                         "dev",
-                        "websocket-authorizer-example",
+                        "from-way-downtown-api",
                         "lambda"
                       ]
                     ]
@@ -130,7 +124,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/websocket-authorizer-example-dev*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/from-way-downtown-api-dev*:*"
                           }
                         ]
                       },
@@ -141,7 +135,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/websocket-authorizer-example-dev*:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/from-way-downtown-api-dev*:*:*"
                           }
                         ]
                       },
@@ -163,7 +157,7 @@
                 "Fn::Join": [
                   "-",
                   [
-                    "websocket-authorizer-example",
+                    "from-way-downtown-api",
                     "dev",
                     {
                       "Ref": "AWS::Region"
@@ -181,9 +175,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/websocket-authorizer-example/dev/1582222842648-2020-02-20T18:20:42.648Z/websocket-authorizer-example.zip"
+                "S3Key": "serverless/from-way-downtown-api/dev/1582260239807-2020-02-21T04:43:59.807Z/from-way-downtown-api.zip"
               },
-              "FunctionName": "websocket-authorizer-example-dev-connect",
+              "FunctionName": "from-way-downtown-api-dev-connect",
               "Handler": "handler.connect",
               "MemorySize": 1024,
               "Role": {
@@ -200,14 +194,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "ConnectLambdaVersionMruVtpG9i7VseUUlO0TWYPPbd1kKeLhgLMsgAe6t6w": {
+          "ConnectLambdaVersionjyMg4Rtsy4CRLN5NynKBogVyGq23HzLvHu8VEPhYE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ConnectLambdaFunction"
               },
-              "CodeSha256": "0OMCf9H1Ikm8dvyg1YnGHNyFyGkISod83Zog9iuaKQE="
+              "CodeSha256": "iXa6wBX3JYNjBh2pogB17Mgthd9e1fGrz/Tq4bZ5utU="
             }
           },
           "DefaultLambdaFunction": {
@@ -217,9 +211,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/websocket-authorizer-example/dev/1582222842648-2020-02-20T18:20:42.648Z/websocket-authorizer-example.zip"
+                "S3Key": "serverless/from-way-downtown-api/dev/1582260239807-2020-02-21T04:43:59.807Z/from-way-downtown-api.zip"
               },
-              "FunctionName": "websocket-authorizer-example-dev-default",
+              "FunctionName": "from-way-downtown-api-dev-default",
               "Handler": "handler.default",
               "MemorySize": 1024,
               "Role": {
@@ -236,56 +230,20 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "DefaultLambdaVersionDUnGDl56kXGKxCYEWNEasQyl85gKKJzrxUxuF8lQ": {
+          "DefaultLambdaVersionAHy4n8pmVodLuNJnQdIXJkcZtVMEI2staQZJbF0Mwo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DefaultLambdaFunction"
               },
-              "CodeSha256": "0OMCf9H1Ikm8dvyg1YnGHNyFyGkISod83Zog9iuaKQE="
-            }
-          },
-          "AuthLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/websocket-authorizer-example/dev/1582222842648-2020-02-20T18:20:42.648Z/websocket-authorizer-example.zip"
-              },
-              "FunctionName": "websocket-authorizer-example-dev-auth",
-              "Handler": "handler.auth",
-              "MemorySize": 1024,
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              },
-              "Runtime": "nodejs12.x",
-              "Timeout": 6
-            },
-            "DependsOn": [
-              "AuthLogGroup",
-              "IamRoleLambdaExecution"
-            ]
-          },
-          "AuthLambdaVersion9upD1U6ZNnfocLvzM9QzTzDaf0zNxJeXzrCn8N7SACU": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "AuthLambdaFunction"
-              },
-              "CodeSha256": "0OMCf9H1Ikm8dvyg1YnGHNyFyGkISod83Zog9iuaKQE="
+              "CodeSha256": "iXa6wBX3JYNjBh2pogB17Mgthd9e1fGrz/Tq4bZ5utU="
             }
           },
           "WebsocketsApi": {
             "Type": "AWS::ApiGatewayV2::Api",
             "Properties": {
-              "Name": "dev-websocket-authorizer-example-websockets",
+              "Name": "dev-from-way-downtown-api-websockets",
               "RouteSelectionExpression": "$request.body.action",
               "Description": "Serverless Websockets",
               "ProtocolType": "WEBSOCKET"
@@ -355,42 +313,6 @@
               }
             }
           },
-          "AuthWebsocketsAuthorizer": {
-            "Type": "AWS::ApiGatewayV2::Authorizer",
-            "Properties": {
-              "ApiId": {
-                "Ref": "WebsocketsApi"
-              },
-              "Name": "auth",
-              "AuthorizerType": "REQUEST",
-              "AuthorizerUri": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":apigateway:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":lambda:path/2015-03-31/functions/",
-                    {
-                      "Fn::GetAtt": [
-                        "AuthLambdaFunction",
-                        "Arn"
-                      ]
-                    },
-                    "/invocations"
-                  ]
-                ]
-              },
-              "IdentitySource": [
-                "route.request.header.Auth"
-              ]
-            }
-          },
           "ConnectLambdaPermissionWebsockets": {
             "Type": "AWS::Lambda::Permission",
             "DependsOn": [
@@ -406,23 +328,6 @@
               },
               "Action": "lambda:InvokeFunction",
               "Principal": "apigateway.amazonaws.com"
-            }
-          },
-          "AuthLambdaPermissionWebsockets": {
-            "Type": "AWS::Lambda::Permission",
-            "DependsOn": [
-              "WebsocketsApi",
-              "AuthLambdaFunction"
-            ],
-            "Properties": {
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "AuthLambdaFunction",
-                  "Arn"
-                ]
-              }
             }
           },
           "DefaultLambdaPermissionWebsockets": {
@@ -449,7 +354,7 @@
                 "Ref": "WebsocketsApi"
               },
               "RouteKey": "$connect",
-              "AuthorizationType": "CUSTOM",
+              "AuthorizationType": "NONE",
               "Target": {
                 "Fn::Join": [
                   "/",
@@ -460,9 +365,6 @@
                     }
                   ]
                 ]
-              },
-              "AuthorizerId": {
-                "Ref": "AuthWebsocketsAuthorizer"
               }
             }
           },
@@ -487,7 +389,7 @@
               }
             }
           },
-          "WebsocketsDeployment1582222841743": {
+          "WebsocketsDeployment1582260237685": {
             "Type": "AWS::ApiGatewayV2::Deployment",
             "DependsOn": [
               "SconnectWebsocketsRoute",
@@ -507,7 +409,7 @@
                 "Ref": "WebsocketsApi"
               },
               "DeploymentId": {
-                "Ref": "WebsocketsDeployment1582222841743"
+                "Ref": "WebsocketsDeployment1582260237685"
               },
               "StageName": "dev",
               "Description": "Serverless Websockets"
@@ -523,19 +425,13 @@
           "ConnectLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ConnectLambdaVersionMruVtpG9i7VseUUlO0TWYPPbd1kKeLhgLMsgAe6t6w"
+              "Ref": "ConnectLambdaVersionjyMg4Rtsy4CRLN5NynKBogVyGq23HzLvHu8VEPhYE"
             }
           },
           "DefaultLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DefaultLambdaVersionDUnGDl56kXGKxCYEWNEasQyl85gKKJzrxUxuF8lQ"
-            }
-          },
-          "AuthLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "AuthLambdaVersion9upD1U6ZNnfocLvzM9QzTzDaf0zNxJeXzrCn8N7SACU"
+              "Ref": "DefaultLambdaVersionAHy4n8pmVodLuNJnQdIXJkcZtVMEI2staQZJbF0Mwo"
             }
           },
           "ServiceEndpointWebsocket": {
@@ -639,23 +535,17 @@
         "events": [
           {
             "websocket": {
-              "route": "$connect",
-              "authorizer": {
-                "name": "auth",
-                "identitySource": [
-                  "route.request.header.Auth"
-                ]
-              }
+              "route": "$connect"
             }
           }
         ],
-        "name": "websocket-authorizer-example-dev-connect",
+        "name": "from-way-downtown-api-dev-connect",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "ConnectLambdaVersionMruVtpG9i7VseUUlO0TWYPPbd1kKeLhgLMsgAe6t6w"
+        "versionLogicalId": "ConnectLambdaVersionjyMg4Rtsy4CRLN5NynKBogVyGq23HzLvHu8VEPhYE"
       },
       "default": {
         "handler": "handler.default",
@@ -666,33 +556,22 @@
             }
           }
         ],
-        "name": "websocket-authorizer-example-dev-default",
+        "name": "from-way-downtown-api-dev-default",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "DefaultLambdaVersionDUnGDl56kXGKxCYEWNEasQyl85gKKJzrxUxuF8lQ"
-      },
-      "auth": {
-        "handler": "handler.auth",
-        "events": [],
-        "name": "websocket-authorizer-example-dev-auth",
-        "package": {},
-        "memory": 1024,
-        "timeout": 6,
-        "runtime": "nodejs12.x",
-        "vpc": {},
-        "versionLogicalId": "AuthLambdaVersion9upD1U6ZNnfocLvzM9QzTzDaf0zNxJeXzrCn8N7SACU"
+        "versionLogicalId": "DefaultLambdaVersionAHy4n8pmVodLuNJnQdIXJkcZtVMEI2staQZJbF0Mwo"
       }
     },
     "serviceFilename": "serverless.yml",
     "layers": {},
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "/Users/tony/Documents/projects/serverless-websockets/.serverless/websocket-authorizer-example.zip"
+    "artifact": "/Users/tony/Documents/projects/from-way-downtown/api/.serverless/from-way-downtown-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/websocket-authorizer-example/dev/1582222842648-2020-02-20T18:20:42.648Z",
-    "artifact": "websocket-authorizer-example.zip"
+    "artifactDirectoryName": "serverless/from-way-downtown-api/dev/1582260239807-2020-02-21T04:43:59.807Z",
+    "artifact": "from-way-downtown-api.zip"
   }
 }
