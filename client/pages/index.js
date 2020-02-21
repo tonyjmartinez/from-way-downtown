@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const Home = props => {
   const [message, setMessage] = useState(null);
   const [socket, setSocket] = useState(null);
+  const [messages, setMessages] = useState([]);
   useEffect(() => {
     !socket &&
       setSocket(
@@ -16,20 +17,38 @@ const Home = props => {
 
     // socket.send(outgoingMessage);
 
+    console.log("here");
     // message received - show the message in div#messages
     if (socket) {
       socket.onmessage = function(event) {
-        let message = event.data;
-        console.log(message);
+        let msg = event.data;
+        console.log("messages", messages);
+        console.log("message", msg);
+        const newMessages = messages.concat(msg);
+        console.log("newmessages", newMessages);
+        handleMessage(newMessages);
       };
     }
-  }, [socket]);
+  }, [socket, messages]);
+
+  const handleMessage = newMessages => setMessages(newMessages);
 
   useEffect(() => {
     socket && message && socket.send(message);
   }, [message, socket]);
 
-  return <input onChange={e => setMessage(e.target.value)} />;
+  return (
+    <>
+      <input onChange={e => setMessage(e.target.value)} />
+      <div>
+        {messages.map((msg, idx) => (
+          <div key={idx} style={{ width: "100%" }}>
+            {msg}
+          </div>
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default Home;
